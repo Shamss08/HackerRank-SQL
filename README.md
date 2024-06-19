@@ -191,17 +191,11 @@ ORDER BY employee_id;
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/12887/1443815629-ac2a843fb7-1.png)
 
 20. Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
+    Equilateral: It's a triangle with 3 sides of equal length.
+    Isosceles: It's a triangle with 2 sides of equal length.
+    Scalene: It's a triangle with 3 sides of differing lengths.
+    Not A Triangle: The given values of A, B, and C don't form a triangle.
 
-⋅⋅* Unordered sub-list. 
-1. Actual numbers don't matter, just that it's a number
-⋅⋅1. Ordered sub-list
-4. And another item.
-
-⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
-
-⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
-⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
-⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
 - *Solution:*
 ```sql
 SELECT name
