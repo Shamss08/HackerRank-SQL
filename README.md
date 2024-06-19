@@ -152,3 +152,5 @@ FROM STATION
 WHERE CITY LIKE '[^AEIOUaeiou]%[^AEIOUaeiou]';
 ```
 ----
+## STUDENTS TABLE
+![alt text](https://s3.amazonaws.com/hr-challenge-images/12896/1443815243-94b941f556-1.png)
