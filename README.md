@@ -192,10 +192,10 @@ ORDER BY employee_id;
 
 20. Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
 
-... _ Equilateral: It's a triangle with  sides of equal length.
-... _ Isosceles: It's a triangle with  sides of equal length.
-... _ Scalene: It's a triangle with  sides of differing lengths.
-... _ Not A Triangle: The given values of A, B, and C don't form a triangle.
+..._ Equilateral: It's a triangle with  sides of equal length.
+..._ Isosceles: It's a triangle with  sides of equal length.
+..._ Scalene: It's a triangle with  sides of differing lengths.
+..._ Not A Triangle: The given values of A, B, and C don't form a triangle.
 
 - *Solution:*
 ```sql
