@@ -38,6 +38,7 @@ FROM CITY;
 ----
 4. Query all columns for a city in **CITY** with the ID 1661.
 The **CITY** table is described as follows:
+
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/8137/1449729804-f21d187d0f-CITY.jpg)
 
 - *Solution:*
@@ -49,6 +50,7 @@ WHERE ID =1661;
 ----
 5. Query all attributes of every Japanese city in the **CITY** table. The **COUNTRYCODE** for Japan is JPN.
 The **CITY** table is described as follows:
+
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/8137/1449729804-f21d187d0f-CITY.jpg)
 
 - *Solution:*
