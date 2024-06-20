@@ -215,32 +215,65 @@ WHERE CITY LIKE '[^AEIOUaeiou]%[^AEIOUaeiou]';
 
 - *Solution:*
 ```sql
-SELECT CAST(ROUND(SUM(LAT_N), 2) AS Decimal(10,2))AS lat, CAST(ROUND(SUM(LONG_W), 2) AS Decimal(10,2)) AS lon
+SELECT CAST(SUM(LAT_N) AS Decimal(10,2))AS lat, CAST(SUM(LONG_W) AS Decimal(10,2)) AS lon
 FROM STATION;
 ```
 ----
-24. Query the sum of Northern Latitudes (LAT_N) from STATION having values greater than 387880 and less than 1372345. Truncate your answer to 4 decimal places.
+24. Query the sum of Northern Latitudes (LAT_N) from STATION having values greater than 38.7880 and less than 137.2345. Truncate your answer to 4 decimal places.
 
 - *Solution:*
 ```sql
-SELECT CONVERT(DECIMAL(15,4),SUM(LAT_N)) 
+SELECT CAST(SUM(LAT_N) AS DECIMAL(15,4)) 
 FROM STATION 
-WHERE LAT_N BETWEEN 38.7880 AND 137.2345
+WHERE LAT_N BETWEEN 38.7880 AND 137.2345;
 ```
 ----
-25. Query the greatest value of the Northern Latitudes (LAT_N) from STATION that is less than 1372345. Truncate your answer to 4 decimal places.
+25. Query the greatest value of the Northern Latitudes (LAT_N) from STATION that is less than 137.2345. Truncate your answer to 4 decimal places.
 
 - *Solution:*
 ```sql
-SELECT CONVERT(DECIMAL(15,4),MAX(LAT_N)) 
+SELECT CAST(MAX(LAT_N) AS Decimal(15,4)) 
 FROM STATION 
 WHERE LAT_N < 137.2345;
+```
+----
+26. Query the Western Longitude (LONG_W) for the largest Northern Latitude (LAT_N) in **STATION** that is less than **137.2345**. Round your answer to **4** decimal places.
+
+- *Solution:*
+```sql
+SELECT CAST(LONG_W AS Decimal(10,4))
+FROM STATION 
+WHERE LAT_N = (SELECT MAX(LAT_N)  FROM STATION  WHERE LAT_N < 137.2345);
+```
+----
+27. Query the smallest Northern Latitude (LAT_N) from **STATION** that is greater than **38.7780**. Round your answer to **4** decimal places.
+- *Solution:*
+```sql
+SELECT CAST(MIN(LAT_N) AS Decimal(10,4))
+FROM STATION
+WHERE LAT_N > 38.7780;
+```
+- *Another Solution:*
+```sql
+SELECT TOP 1 CAST(LAT_N AS Decimal(10,4))
+FROM STATION
+WHERE LAT_N > 38.7780
+ORDER BY LAT_N;
+```
+----
+28. Query the Western Longitude (LONG_W)where the smallest Northern Latitude (LAT_N) in **STATION** is greater than **38.7780**. Round your answer to **4** decimal places.
+
+- *Solution:*
+```sql
+SELECT CAST(LONG_W AS DECIMAL(10,4))
+FROM STATION
+WHERE LAT_N=(SELECT MIN(LAT_N) FROM STATION WHERE LAT_N > 38.7780);
 ```
 ----
 ## STUDENTS TABLE
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/12896/1443815243-94b941f556-1.png)
 
-17. Query the Name of any student in **STUDENTS** who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
+29. Query the Name of any student in **STUDENTS** who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
 
 - *Solution:*
 ```sql
@@ -253,7 +286,7 @@ order by RIGHT(Name, 3) , ID;
 ## Employee TABLE
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/19629/1458557872-4396838885-ScreenShot2016-03-21at4.27.13PM.png)
 
-18. Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+30. Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
 
 - *Solution:*
 ```sql
@@ -262,7 +295,7 @@ FROM Employee
 ORDER BY name;
 ```
 ----
-19. Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+31. Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
 
 - *Solution:*
 ```sql
@@ -272,7 +305,7 @@ WHERE salary > 2000 AND months < 10
 ORDER BY employee_id;
 ```
 ----
-20. Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's  key was broken until after completing the calculation. She wants your help finding the difference between her miscalculation (using salaries with any zeros removed), and the actual average salary.
+32. Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's  key was broken until after completing the calculation. She wants your help finding the difference between her miscalculation (using salaries with any zeros removed), and the actual average salary.
 
 Write a query calculating the amount of error (i.e.: actual - miscalculated  average monthly salaries), and round it up to the next integer.
 
@@ -282,7 +315,7 @@ SELECT CAST (CEILING(AVG(CAST(Salary AS Float)) - AVG(CAST(REPLACE(Salary, '0', 
 FROM EMPLOYEES;
 ```
 ----
-21. We define an employee's total earnings to be their monthly salary x months worked, and the maximum total earnings to be the maximum total earnings for any employee in the Employee table. Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings. Then print these values as 2 space-separated integers.
+33. We define an employee's total earnings to be their monthly salary x months worked, and the maximum total earnings to be the maximum total earnings for any employee in the Employee table. Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings. Then print these values as 2 space-separated integers.
 
 - *Solution:*
 ```sql
@@ -297,7 +330,7 @@ WHERE DR=1;
 ## TRIANGLES TABLE
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/12887/1443815629-ac2a843fb7-1.png)
 
-20. Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
+34. Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
     
    - Equilateral: It's a triangle with 3 sides of equal length.
    - Isosceles: It's a triangle with 2 sides of equal length.
@@ -316,4 +349,7 @@ SELECT
 FROM TRIANGLES;
 ```
 ----
+## CITY and COUNTRY tables
+![alt text](https://s3.amazonaws.com/hr-challenge-images/8137/1449729804-f21d187d0f-CITY.jpg)![alt text](https://s3.amazonaws.com/hr-challenge-images/8342/1449769013-e54ce90480-Country.jpg)
+
 
