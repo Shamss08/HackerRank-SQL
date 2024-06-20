@@ -446,3 +446,15 @@ There are a total of 2 singers.
 There are a total of 3 actors.
 There are a total of 3 professors.
 ```
+
+- *Solution:*
+```sql
+SELECT NAME+ '(' +LEFT(Occupation,1)+')'
+FROM OCCUPATIONS
+ORDER BY NAME;
+
+SELECT 'There are a total of '+CAST(COUNT(Occupation) AS VARCHAR(10))+' '+LOWER(Occupation)+'s.'
+FROM OCCUPATIONS
+GROUP BY Occupation
+ORDER BY COUNT(Occupation);
+```
