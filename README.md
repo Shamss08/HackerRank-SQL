@@ -421,10 +421,12 @@ Note: There will be at least two entries in the table for each type of occupatio
 Input Format
 The OCCUPATIONS table is described as follows:
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/12889/1443816414-2a465532e7-1.png)
+
 Occupation will only contain one of the following values: Doctor, Professor, Singer or Actor.
 Sample Input
 An OCCUPATIONS table that contains the following records:
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/12889/1443816608-0b4d01d157-2.png)
+
 Sample Output
 ```sql
 Ashely(P)
