@@ -270,10 +270,34 @@ FROM STATION
 WHERE LAT_N=(SELECT MIN(LAT_N) FROM STATION WHERE LAT_N > 38.7780);
 ```
 ----
+29. Consider P1(a,b) and P2(c,d) to be two points on a 2D plane.
+ a happens to equal the minimum value in Northern Latitude (LAT_N in STATION).
+ b happens to equal the minimum value in Western Longitude (LONG_W in STATION).
+ c happens to equal the maximum value in Northern Latitude (LAT_N in STATION).
+ d happens to equal the maximum value in Western Longitude (LONG_W in STATION).
+Query the Manhattan Distance between points P1 and P2 and round it to a scale of 4 decimal places.
+
+- *Solution:*
+```sql
+SELECT 
+CAST((MAX(LAT_N)-MIN(LAT_N)) + (MAX(LONG_W)-MIN(LONG_W)) AS DECIMAL(10,4))AS [Manhattan Distance]
+FROM STATION;
+```
+----
+30. Consider P1(a,b) and P2(a,b) to be two points on a 2D plane where (a,b) are the respective minimum and maximum values of Northern Latitude (LAT_N) and (c,d) are the respective minimum and maximum values of Western Longitude (LONG_W) in STATION.
+
+Query the Euclidean Distance between points P1 and P2 and format your answer to display 4 decimal digits.
+
+- *Solution:*
+```sql
+SELECT CAST(SQRT(SQUARE(MAX(LAT_N)-MIN(LAT_N))+SQUARE(MAX(LONG_W)-MIN(LONG_W))) AS DECIMAL(10,4))
+FROM STATION;
+```
+----
 ## STUDENTS TABLE
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/12896/1443815243-94b941f556-1.png)
 
-29. Query the Name of any student in **STUDENTS** who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
+31. Query the Name of any student in **STUDENTS** who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
 
 - *Solution:*
 ```sql
@@ -286,7 +310,7 @@ order by RIGHT(Name, 3) , ID;
 ## Employee TABLE
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/19629/1458557872-4396838885-ScreenShot2016-03-21at4.27.13PM.png)
 
-30. Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+32. Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
 
 - *Solution:*
 ```sql
@@ -295,7 +319,7 @@ FROM Employee
 ORDER BY name;
 ```
 ----
-31. Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+33. Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
 
 - *Solution:*
 ```sql
@@ -305,7 +329,7 @@ WHERE salary > 2000 AND months < 10
 ORDER BY employee_id;
 ```
 ----
-32. Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's  key was broken until after completing the calculation. She wants your help finding the difference between her miscalculation (using salaries with any zeros removed), and the actual average salary.
+34. Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's  key was broken until after completing the calculation. She wants your help finding the difference between her miscalculation (using salaries with any zeros removed), and the actual average salary.
 
 Write a query calculating the amount of error (i.e.: actual - miscalculated  average monthly salaries), and round it up to the next integer.
 
@@ -315,7 +339,7 @@ SELECT CAST (CEILING(AVG(CAST(Salary AS Float)) - AVG(CAST(REPLACE(Salary, '0', 
 FROM EMPLOYEES;
 ```
 ----
-33. We define an employee's total earnings to be their monthly salary x months worked, and the maximum total earnings to be the maximum total earnings for any employee in the Employee table. Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings. Then print these values as 2 space-separated integers.
+35. We define an employee's total earnings to be their monthly salary x months worked, and the maximum total earnings to be the maximum total earnings for any employee in the Employee table. Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings. Then print these values as 2 space-separated integers.
 
 - *Solution:*
 ```sql
@@ -330,7 +354,7 @@ WHERE DR=1;
 ## TRIANGLES TABLE
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/12887/1443815629-ac2a843fb7-1.png)
 
-34. Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
+36. Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
     
    - Equilateral: It's a triangle with 3 sides of equal length.
    - Isosceles: It's a triangle with 2 sides of equal length.
@@ -352,5 +376,39 @@ FROM TRIANGLES;
 ## CITY and COUNTRY tables
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/8137/1449729804-f21d187d0f-CITY.jpg)
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/8342/1449769013-e54ce90480-Country.jpg)
+
+37. Given the **CITY** and **COUNTRY** tables, query the sum of the populations of all cities where the CONTINENT is 'Asia'.
+**Note**: CITY.CountryCode and COUNTRY.Code are matching key columns.
+
+- *Solution:*
+```sql
+SELECT SUM(C.POPULATION)
+FROM CITY C 
+JOIN COUNTRY CN
+ON C.CountryCode = CN.Code 
+WHERE CN.CONTINENT='Asia';
+```
+----
+38. Given the **CITY** and **COUNTRY** tables, query the names of all cities where the CONTINENT is 'Africa'.
+**Note**: CITY.CountryCode and COUNTRY.Code are matching key columns.
+
+- *Solution:*
+```sql
+SELECT C.NAME
+FROM CITY C, COUNTRY CN
+WHERE C.COUNTRYCODE = CN.CODE AND CN.CONTINENT= 'Africa';
+```
+----
+39. Given the **CITY** and **COUNTRY** tables, query the names of all the continents (COUNTRY.Continent) and their respective average city populations (CITY.Population) rounded down to the nearest integer.
+**Note**: CITY.CountryCode and COUNTRY.Code are matching key columns.
+
+- *Solution:*
+```sql
+SELECT CN.CONTINENT, AVG(C.POPULATION)
+FROM CITY C, COUNTRY CN
+WHERE C.COUNTRYCODE = CN.CODE
+GROUP BY CN.CONTINENT;
+```
+----
 
 
