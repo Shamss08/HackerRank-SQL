@@ -24,3 +24,18 @@ You are given a table, BST, containing two columns: N and P, where N represents 
 8 Inner
 9 Leaf
 ```
+- *Explanation:*
+The Binary Tree below illustrates the sample:
+
+![alt text](https://s3.amazonaws.com/hr-challenge-images/12888/1443773633-f9e6fd314e-simply_sql_bst.png)
+
+- *Solution:*
+```sql
+SELECT *
+FROM CITY
+WHERE CountryCode = 'USA' AND POPULATION > 100000;
+```
+----
+
+
+
