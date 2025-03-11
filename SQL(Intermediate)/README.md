@@ -117,15 +117,32 @@ In company C2, the only lead manager is LM2. There is one senior manager, SM3, u
 
 - *Solution:*
 ```sql
-SELECT 
-    N,
-    CASE
-    WHEN P IS NULL THEN 'Root'
-    WHEN N IN (SELECT DISTINCT P FROM BST WHERE P IS NOT NULL) THEN 'Inner'
-    ELSE 'Leaf'
-    END
-FROM BST
-ORDER BY N;
+/*
+Output: company_code, founder name, total number of lead managers, total number of senior managers, total number of managers, and total number of employees
+
+Condition: 
+order by company_code ascending
+
+Note:
+*may contain duplicates => DISTINCT
+
+Order: C_1, C_10, C_2
+*/
+
+select 
+        c.company_code, 
+        c.founder, 
+        count(DISTINCT(lm.lead_manager_code)), 
+        count(DISTINCT(sm.senior_manager_code)), 
+        count(DISTINCT(m.manager_code)), 
+        count(DISTINCT(e.employee_code))
+from Company c
+left join Lead_Manager lm on lm.company_code = c.company_code
+left join Senior_Manager sm  on sm.lead_manager_code = lm.lead_manager_code
+left join Manager m  on m.senior_manager_code = sm.senior_manager_code
+left join Employee e on e.manager_code = m.manager_code
+group by c.company_code, c.founder
+order by company_code asc;
 ```
 ----
 
