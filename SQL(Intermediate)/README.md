@@ -196,11 +196,11 @@ NULL 7 68
 
 - *Note:*
 
-Print "NULL"  as the name if the grade is less than 8.
+  Print "NULL"  as the name if the grade is less than 8.
 
 - *Explanation:*
 
-Consider the following table with the grades assigned to the students:
+  Consider the following table with the grades assigned to the students:
 
 ![alt text](https://s3.amazonaws.com/hr-challenge-images/12891/1443818026-0b3af8db30-4.png)
 
@@ -228,19 +228,19 @@ Julia just finished conducting a coding contest, and she needs your help assembl
 
 The following tables contain contest data:
 
-  - Hackers: The hacker_id is the id of the hacker, and name is the name of the hacker.
+  * Hackers: The hacker_id is the id of the hacker, and name is the name of the hacker.
   
   ![alt text](https://s3.amazonaws.com/hr-challenge-images/19504/1458526776-67667350b4-ScreenShot2016-03-21at7.45.59AM.png)
   
-  - Difficulty: The difficult_level is the level of difficulty of the challenge, and score is the maximum score that can be achieved for a challenge at that difficulty level.
+  * Difficulty: The difficult_level is the level of difficulty of the challenge, and score is the maximum score that can be achieved for a challenge at that difficulty level.
   
   ![alt text](https://s3.amazonaws.com/hr-challenge-images/19504/1458526915-57eb75d9a2-ScreenShot2016-03-21at7.46.09AM.png)
   
-  - Challenges: The challenge_id is the id of the challenge, the hacker_id is the id of the hacker who created the challenge, and difficulty_level is the level of difficulty of the challenge.
+  * Challenges: The challenge_id is the id of the challenge, the hacker_id is the id of the hacker who created the challenge, and difficulty_level is the level of difficulty of the challenge.
   
   ![alt text](https://s3.amazonaws.com/hr-challenge-images/19504/1458527032-f9ca650442-ScreenShot2016-03-21at7.46.17AM.png)
   
-  - Submissions: The submission_id is the id of the submission, hacker_id is the id of the hacker who made the submission, challenge_id is the id of the challenge that the submission belongs to, and score is the score of the submission.
+  * Submissions: The submission_id is the id of the submission, hacker_id is the id of the hacker who made the submission, challenge_id is the id of the challenge that the submission belongs to, and score is the score of the submission.
   
   ![alt text](https://s3.amazonaws.com/hr-challenge-images/19504/1458527077-298f8e922a-ScreenShot2016-03-21at7.46.29AM.png)
 
