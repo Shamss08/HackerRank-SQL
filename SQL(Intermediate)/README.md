@@ -211,15 +211,11 @@ Scarlet (grade 8)
 
 - *Solution:*
 ```sql
-SELECT 
-    N,
-    CASE
-    WHEN P IS NULL THEN 'Root'
-    WHEN N IN (SELECT DISTINCT P FROM BST WHERE P IS NOT NULL) THEN 'Inner'
-    ELSE 'Leaf'
-    END
-FROM BST
-ORDER BY N;
+select iif(g.grade>7, s.name, null), g.grade, s.marks 
+from students s
+left join grades g
+on s.marks between g.min_mark and g.max_mark
+order by g.grade desc, s.name asc, s.marks asc;
 ```
 ----
 
